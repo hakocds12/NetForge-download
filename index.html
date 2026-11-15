@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NetForge · TFTP, Syslog, DHCP and Terminal in one app</title>
+<meta name="description" content="NetForge is a free desktop tool for network engineers: TFTP server and client, DHCP server, Syslog server, and SSH / Telnet / Serial terminal in one modern window.">
+<link rel="icon" href="assets/netforge.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1120; --panel: #111a2e; --panel-2: #16213a; --border: #22304d;
+    --text: #e6ebf5; --muted: #94a3b8; --accent: #2563eb; --accent-2: #3b82f6; --ok: #10b981;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  a { color: var(--accent-2); text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); }
+  .brand img { width: 30px; height: 30px; border-radius: 8px; }
+  nav .links a { color: var(--muted); margin-left: 22px; font-size: 14px; }
+  nav .links a:hover { color: var(--text); }
+  header { text-align: center; padding: 56px 0 28px; }
+  h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; letter-spacing: -0.03em; margin: 0 0 16px; }
+  h1 span { background: linear-gradient(90deg, #60a5fa, #2563eb); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { color: var(--muted); font-size: 18px; max-width: 640px; margin: 0 auto 30px; }
+  .cta { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; font-weight: 600;
+         padding: 14px 26px; border-radius: 10px; font-size: 16px; box-shadow: 0 8px 24px -8px rgba(37,99,235,.7); }
+  .cta:hover { background: var(--accent-2); }
+  .cta svg { width: 20px; height: 20px; }
+  .sub { margin-top: 12px; color: var(--muted); font-size: 13px; }
+  .sub a { color: var(--muted); text-decoration: underline; }
+  .shot { margin: 40px auto 0; border-radius: 14px; border: 1px solid var(--border); overflow: hidden;
+          box-shadow: 0 30px 80px -30px rgba(0,0,0,.8); }
+  .shot img { display: block; width: 100%; height: auto; }
+  section { padding: 72px 0 0; }
+  h2 { font-size: 28px; letter-spacing: -0.02em; margin: 0 0 8px; text-align: center; }
+  .section-lead { color: var(--muted); text-align: center; margin: 0 0 36px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 16px; }
+  .card p { margin: 0; color: var(--muted); font-size: 14px; }
+  .ico { width: 34px; height: 34px; border-radius: 9px; background: rgba(37,99,235,.15); color: #60a5fa;
+         display: grid; place-items: center; margin-bottom: 12px; font-size: 17px; }
+  .dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .dl .card { display: flex; flex-direction: column; gap: 10px; }
+  .dl a.btn { display: block; text-align: center; padding: 10px; border-radius: 8px; border: 1px solid var(--border);
+              background: var(--panel-2); color: var(--text); font-weight: 500; font-size: 14px; }
+  .dl a.btn:hover { border-color: var(--accent); }
+  .dl a.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 0; max-width: 720px; margin: 0 auto; }
+  .steps li { counter-increment: s; position: relative; padding: 0 0 18px 46px; color: var(--muted); }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
+                      background: var(--panel-2); border: 1px solid var(--border); display: grid; place-items: center; color: var(--text); font-weight: 600; font-size: 14px; }
+  .steps b { color: var(--text); }
+  .note { max-width: 720px; margin: 8px auto 0; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid #f59e0b;
+          border-radius: 10px; padding: 14px 16px; color: var(--muted); font-size: 14px; }
+  footer { margin-top: 80px; padding: 28px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
+  @media (max-width: 640px) { nav .links { display: none; } header { padding-top: 28px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><img src="assets/netforge.svg" alt="">NetForge</a>
+    <div class="links"><a href="#features">Features</a><a href="#download">Download</a><a href="#install">Install</a></div>
+  </nav>
+
+  <header>
+    <h1>Every network tool you need,<br><span>in one window.</span></h1>
+    <p class="lead">TFTP server and client, DHCP server, Syslog server, and an SSH / Telnet / Serial terminal, built for network engineers and field technicians.</p>
+    <a class="cta" id="cta" href="https://github.com/hakocds12/NetForge-download/releases/latest">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>
+      <span id="cta-label">Download for Windows</span>
+    </a>
+    <div class="sub"><span id="version">Free</span> · Windows 10/11 · also for <a href="#download">macOS and Linux</a></div>
+    <div class="shot"><img src="assets/netforge-dark.png" alt="NetForge main window: TFTP server, session manager and terminal"></div>
+  </header>
+
+  <section id="features">
+    <h2>Replaces five tools</h2>
+    <p class="section-lead">Stop juggling Tftpd64, PuTTY, a serial monitor and a syslog viewer.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">⇅</div><h3>TFTP server and client</h3><p>Firmware upgrades and config backups with live progress, concurrent transfers and a safe root folder.</p></div>
+      <div class="card"><div class="ico">◎</div><h3>DHCP server</h3><p>Give devices an address on a bench network, with reservations and boot options for PXE.</p></div>
+      <div class="card"><div class="ico">≡</div><h3>Syslog server</h3><p>UDP and TCP, Cisco / RFC 3164 / 5424 parsing, colour-coded severities, search and CSV export.</p></div>
+      <div class="card"><div class="ico">&gt;_</div><h3>SSH, Telnet, Serial, Raw TCP</h3><p>Tabbed terminal with a command bar, history, autocomplete and session recording.</p></div>
+      <div class="card"><div class="ico">★</div><h3>Saved sessions</h3><p>Favorites and recents. Passwords are kept in the Windows credential store, never in plain text.</p></div>
+      <div class="card"><div class="ico">◐</div><h3>Modern and fast</h3><p>Native app, dark and light themes, resizable panels, small download.</p></div>
+    </div>
+  </section>
+
+  <section id="download">
+    <h2>Download</h2>
+    <p class="section-lead" id="dl-lead">Latest version for every platform.</p>
+    <div class="dl">
+      <div class="card"><h3>Windows</h3><p>Windows 10 and 11, 64-bit</p>
+        <a class="btn primary" data-match="x64-setup.exe" href="https://github.com/hakocds12/NetForge-download/releases/latest">Installer (.exe)</a>
+        <a class="btn" data-match=".msi" href="https://github.com/hakocds12/NetForge-download/releases/latest">MSI for IT deployment</a></div>
+      <div class="card"><h3>macOS</h3><p>Apple Silicon and Intel</p>
+        <a class="btn" data-match=".dmg" href="https://github.com/hakocds12/NetForge-download/releases/latest">Disk image (.dmg)</a></div>
+      <div class="card"><h3>Linux</h3><p>Ubuntu, Debian, Fedora and others</p>
+        <a class="btn" data-match=".deb" href="https://github.com/hakocds12/NetForge-download/releases/latest">.deb</a>
+        <a class="btn" data-match=".AppImage" href="https://github.com/hakocds12/NetForge-download/releases/latest">AppImage</a></div>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2>Install on Windows</h2>
+    <p class="section-lead">Takes under a minute.</p>
+    <ol class="steps">
+      <li>Run <b>NetForge_x64-setup.exe</b>.</li>
+      <li>If Windows shows <b>“Windows protected your PC”</b>, click <b>More info → Run anyway</b>.</li>
+      <li>Open NetForge from the Start menu. When Windows Firewall asks, click <b>Allow</b> so devices can reach the TFTP, DHCP and Syslog servers.</li>
+    </ol>
+    <div class="note">The SmartScreen message appears because this early version is not yet code-signed. The installer is built automatically from the project's source.</div>
+  </section>
+
+  <footer>NetForge · <a href="https://github.com/hakocds12/NetForge-download/releases">All releases</a> · <a href="https://github.com/hakocds12/NetForge-download/issues">Report a problem</a></footer>
+</div>
+
+<script>
+  // Point every button straight at the newest file; if the API is unavailable the links still
+  // open the latest release page.
+  fetch("https://api.github.com/repos/hakocds12/NetForge-download/releases/latest")
+    .then((r) => (r.ok ? r.json() : Promise.reject()))
+    .then((rel) => {
+      const assets = rel.assets || [];
+      const find = (m) => assets.find((a) => a.name.endsWith(m) || a.name.includes(m));
+      document.querySelectorAll("[data-match]").forEach((a) => {
+        const f = find(a.dataset.match);
+        if (f) a.href = f.browser_download_url;
+      });
+      const win = find("x64-setup.exe");
+      if (win && !/Mac|Linux/.test(navigator.platform)) document.getElementById("cta").href = win.browser_download_url;
+      document.getElementById("version").textContent = "Version " + rel.tag_name.replace(/^v/, "") + " · Free";
+      document.getElementById("dl-lead").textContent = "Version " + rel.tag_name.replace(/^v/, "") + ", released " + new Date(rel.published_at).toLocaleDateString();
+    })
+    .catch(() => {});
+  if (/Mac/.test(navigator.platform)) document.getElementById("cta-label").textContent = "Download for macOS", document.getElementById("cta").href = "#download";
+  else if (/Linux/.test(navigator.platform)) document.getElementById("cta-label").textContent = "Download for Linux", document.getElementById("cta").href = "#download";
+</script>
+</body>
+</html>
