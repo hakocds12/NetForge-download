@@ -1,0 +1,63 @@
+NetForge — Freeware License Agreement
+
+Copyright (c) 2026 Abdelhak Ait Yahia. All rights reserved.
+
+Please read this agreement before installing or using NetForge ("the Software").
+By installing or using the Software you accept these terms. If you do not accept
+them, do not install or use the Software.
+
+1. License to use
+   The Software is free of charge. You may install and use it on any number of
+   computers, for personal, educational and commercial purposes, including use
+   inside a company or for work you do for customers.
+
+2. Redistribution
+   You may share the unmodified official installer, free of charge, provided this
+   agreement is included. Linking to the official download page is preferred:
+   https://hakocds12.github.io/NetForge-download/
+
+3. Restrictions
+   You may not:
+   a) sell, rent, lease or sublicense the Software, or include it in a paid product
+      or bundle;
+   b) modify, adapt, translate, decompile, disassemble or reverse-engineer the
+      Software, except to the extent that applicable law expressly permits it;
+   c) remove or alter any copyright notice, name or logo in the Software;
+   d) distribute the Software under a different name or present it as your own work.
+
+4. Ownership
+   The Software is licensed, not sold. All rights, title and intellectual property
+   in the Software remain with Abdelhak Ait Yahia, except for the third-party
+   components described in section 5.
+
+5. Third-party components
+   The Software includes open-source components that are licensed to you under their
+   own licenses, listed in THIRD-PARTY-NOTICES.txt. Nothing in this agreement limits
+   your rights under those licenses.
+
+6. Responsible use
+   The Software includes network servers (TFTP, DHCP, Syslog). Running a DHCP server
+   on a network you do not administer can disrupt it. Use the Software only on
+   networks and devices you are authorised to manage. You are responsible for the
+   firmware, files and commands you send to devices.
+
+7. No warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+   INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+   PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+
+8. Limitation of liability
+   TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+   ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING DAMAGE TO DEVICES, LOSS OF DATA,
+   NETWORK DOWNTIME OR LOST PROFITS, ARISING FROM OR IN CONNECTION WITH THE SOFTWARE
+   OR ITS USE.
+
+9. Termination
+   This license ends automatically if you break any of its terms. You must then stop
+   using the Software and delete all copies.
+
+10. Changes
+   Future versions of the Software may come with a different agreement. This
+   agreement applies to the version it was supplied with.
+
+Contact: https://github.com/hakocds12/NetForge-download/issues
