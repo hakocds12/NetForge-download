@@ -1,4 +1,4 @@
-# NetForge — downloads
+# HakoNet — downloads
 
 TFTP server and client, DHCP server, Syslog server and an SSH / Telnet / Serial terminal in one app.
 
@@ -7,4 +7,4 @@ TFTP server and client, DHCP server, Syslog server and an SSH / Telnet / Serial 
 Found a problem? [Open an issue](https://github.com/hakocds12/NetForge-download/issues).
 
 ---
-NetForge © 2026 Abdelhak Ait Yahia. All rights reserved. Free to use under the [NetForge license](LICENSE.txt).
+HakoNet © 2026 Abdelhak Ait Yahia. All rights reserved. Free to use under the [HakoNet license](LICENSE.txt).
